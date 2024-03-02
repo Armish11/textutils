@@ -10,7 +10,6 @@ import './App.css';
 import Alert from './Components/Alert';
 import Navbar from './Components/Navbar';
 import Textform from './Components/Textform';
-// import About from './Components/About';
 import React, { useState } from 'react';
 
 // import About  from './Components/About';
@@ -38,17 +37,18 @@ const toggleMode=()=>{
     setmode('dark');
     document.body.style.backgroundColor='#052c65';
     showAlert("dark mode has been enabled","success");
-document.title="TextUtils-Dark Mode"    
+// document.title="TextUtils-Dark Mode"    
   }
   else{
     changetxt('Enable dark mode');
     setmode('light');
     document.body.style.backgroundColor='white';
 showAlert("light mode has been enabled","success");
-document.title='TextUtils-Light Mode'
+// document.title='TextUtils-Light Mode'
 
   }
 }
+
 //   const[gtext, gchangetxt]=useState('Enable green mode')
 // const[gmode, gsetmode]= useState('red');//Whether green mode is enabled or not?
 // const gtoggleMode=()=>{
@@ -70,26 +70,25 @@ document.title='TextUtils-Light Mode'
 // }
 
   return (
-    <>
-    {/* // <BrowserRouter> */}
+  <>  
+    {/*<BrowserRouter basename="/textutils">*/}
 <Navbar title="TextUtils" abouttext="About" mode={mode} toggleMode={toggleMode} text={text} /*gmode={gmode} gtoggleMode={gtoggleMode} gtext={gtext}*//>
 {/* <Navbar/> */}
+
 <Alert alert={alert}/>
-<div className="container my-3">
-{/* <Routes> */}
-  {/* React always do partial matching so you have to exact path to reach the desired path */}
-          {/* <Route exact path="/about" element={<About />}/> */}
+ <div className="container my-3"> 
+  {/* <Routes>*/}
+       
+         
+<Textform mode={mode}  toggleMode={toggleMode} /*gmode={gmode} gtoggleMode={gtoggleMode}*/ heading={`Try TextUtils-Word Counter, Character Counter, Remove extra spaces`} showAlert={showAlert} />
+ </div>
 
-          <Textform mode={mode}  toggleMode={toggleMode} /*gmode={gmode} gtoggleMode={gtoggleMode}*/ heading={`Enter the text to analyze here`} showAlert={showAlert}/>
-
-      {/* </Routes> */}
-</div>
-{/* // </BrowserRouter> */}
-</>
+ </>
 
 
   
       );
-}
 
+}
 export default App;
+

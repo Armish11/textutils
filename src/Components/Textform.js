@@ -36,6 +36,7 @@ settext(event.target.value);
         let text1=document.getElementById("myBox");
         text1.select();
         text1.setSelectionRange(0,Infinity);
+        document.getSelection().removeAllRanges();
         navigator.clipboard.writeText(text1.value);
         props.showAlert("Text has been copied to clipboard","success")
     }
@@ -50,16 +51,17 @@ props.showAlert("Extra whitespaces has been removed","success")
     <>
     <div>
 <div className="mb-3" style={{color:props.mode==='dark'?'white':'black'}}>
-  <label htmlFor="myBox" className="form-label" ><h1>{props.heading}</h1></label>
-  <textarea className="form-control" id="myBox" value={text} onChange={handleonchange} rows="8"
-style={{backgroundColor:props.mode==='dark'?'grey':'white',color:props.mode==='dark'?'white':'black'}}></textarea>
+  <label htmlFor="myBox" className="form-label" ><h2 className='mb-4'>{props.heading}</h2></label>
+  <textarea className="form-control form-control-sm" id="myBox" value={text} onChange={handleonchange} rows="8"
+style={{backgroundColor:props.mode==='dark'?'#6e6ba7':'white',color:props.mode==='dark'?'white':'black'}}></textarea>
 </div>
-<button className="btn btn-primary mx-1 my-1" onClick={handleupclick} >Convert to Uppercase</button>
-<button className="btn btn-primary mx-1 my-1"  onClick={handledownclick}>Convert to Lowercase</button>
-<button className=" btn btn-primary mx=1 my-1" onClick={handlereplace}>Replace Words</button>
-<button className="btn btn-primary mx-1 my-1" onClick={handlecleartext}>Clear Text</button>
-<button className="btn btn-primary mx-1 my-1" onClick={handlecopytext}>Copy Text</button>
-<button className="btn btn-primary mx-1 my-1" onClick={removeextraspace}>Remove Extra Spaces</button>
+<div className='container my-3'>
+<button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handleupclick} >Convert to Uppercase</button>
+<button className="btn btn-primary mx-1  my-1" disabled={text.length===0} onClick={handledownclick}>Convert to Lowercase</button>
+<button className=" btn btn-primary mx=1  my-1" disabled={text.length===0} onClick={handlereplace}>Replace Words</button>
+<button className="btn btn-primary mx-1  my-1" disabled={text.length===0} onClick={handlecleartext}>Clear Text</button>
+<button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={handlecopytext}>Copy Text</button>
+<button className="btn btn-primary mx-1 my-1" disabled={text.length===0} onClick={removeextraspace}>Remove Extra Spaces</button>
     </div>
     <div className="container my-3" style={{color:props.mode==='dark'?'white':'black'}}>
     <h1>Your text summary</h1>
@@ -69,7 +71,8 @@ style={{backgroundColor:props.mode==='dark'?'grey':'white',color:props.mode==='d
     </div>
     <div className="container" style={{color:props.mode==='dark'?'white':'black'}}>
         <h2>Preview</h2>
-        <p>{text.length>0?text:'Enter something in the textbox above to preview it here'}</p>
+        <p>{text.length>0?text:'Nothing to preview!'}</p>
+    </div>
     </div>
     </>
   )
